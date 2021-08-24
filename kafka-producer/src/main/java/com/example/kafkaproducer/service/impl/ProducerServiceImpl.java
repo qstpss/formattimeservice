@@ -23,7 +23,8 @@ public class ProducerServiceImpl implements ProducerService {
     @SneakyThrows
     @Async
     public void produce(String value) {
-        ExternalValueDto dto = new ExternalValueDto(value, producerProperties.getName());
+        ExternalValueDto dto = new ExternalValueDto();
+        dto.setValue(value);
         System.out.println("#############SEND A MESSAGE#########");
 
         ListenableFuture<SendResult<Long, ExternalValueDto>> futureResult =

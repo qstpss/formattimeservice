@@ -18,7 +18,6 @@ public class ProducerTest {
 
     @Test
     public void contextLoads() {
-        assertThat(producerProperties.getName()).isEqualTo("Hello");
         assertThat(producerProperties.getServer()).isEqualTo("0.0.0.0");
     }
 }

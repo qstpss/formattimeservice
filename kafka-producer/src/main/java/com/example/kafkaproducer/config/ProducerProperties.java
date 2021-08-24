@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 public class ProducerProperties {
-    private String name;
     private String server;
     private String topic;
 }
