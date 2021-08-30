@@ -4,12 +4,14 @@ import com.example.kafkaproducer.model.ExternalValueDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -35,14 +37,15 @@ public class ProducerConfiguration {
     }
 
     @Bean
-    public ProducerFactory<Long, ExternalValueDto> producerAbstractFactory() {
+    public ProducerFactory<String, String> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<Long, ExternalValueDto> kafkaTemplate() {
-        KafkaTemplate<Long, ExternalValueDto> template = new KafkaTemplate<>(producerAbstractFactory());
-        template.setMessageConverter(new StringJsonMessageConverter());
+    public KafkaTemplate<String, String> kafkaTemplate(
+            ObjectProvider<RecordMessageConverter> messageConverter) {
+        KafkaTemplate<String, String> template = new KafkaTemplate<>(producerFactory());
+        messageConverter.ifUnique(template::setMessageConverter);
         return template;
     }
 }
