@@ -5,13 +5,11 @@ import com.example.formattimeservice.services.FormatDateTimeService;
 import org.springframework.stereotype.Service;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Locale;
 
 @Service
 public class FormatDateTimeServiceImpl implements FormatDateTimeService {
     private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
-            .ofLocalizedDate(FormatStyle.LONG)
-            .withLocale(Locale.ENGLISH);
+            .ofLocalizedDateTime(FormatStyle.MEDIUM);
 
     @Override
     public String formatDateTime(DateTimeDto dto) {
