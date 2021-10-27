@@ -1,7 +1,7 @@
 package com.example.formattimeservice.services.impl;
 
 import com.example.formattimeservice.services.DatabaseClientHttpClient;
-import com.example.formattimeservice.services.model.dto.ExternalValueDto;
+import external.dto.ExternalValueDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

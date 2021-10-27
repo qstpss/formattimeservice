@@ -1,20 +1,17 @@
 package com.example.kafkaproducer.service.impl;
 
 import com.example.kafkaproducer.config.ProducerProperties;
-import com.example.kafkaproducer.model.ExternalValueDto;
 import com.example.kafkaproducer.service.ProducerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import external.dto.ExternalValueDto;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Service
 @RequiredArgsConstructor
